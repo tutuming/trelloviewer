@@ -5,7 +5,18 @@
 ```shell
 bower install
 npm install
+```
+
+## build
+
+```shell
 grunt
+```
+
+to watch sources:
+
+``` shell
+grunt watch
 ```
 
 ## references

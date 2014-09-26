@@ -3,17 +3,19 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     watch: {
-      files: ['coffee/**/*.coffee'],
+      files: ['package/coffee/**/*.coffee'],
       tasks: 'coffee'
     },
     coffee: {
       compile: {
         files: [{
           expand: true,
-          cwd: 'coffee/',
-          src: ['**/*.coffee'],
-          dest: 'js/',
+          cwd: 'package/coffee/',
+          package: ['**/*.coffee'],
+          dest: 'package/js/',
           ext: '.js',
+        }, {
+          'package/js/trello_client.js': 'bower_components/trello_client/index.coffee',
         }]
       }
     }
@@ -27,10 +29,11 @@ module.exports = function(grunt) {
     'default',
     'build a package.',
     function() {
-      grunt.file.mkdir('./js');
-      grunt.file.copy('./bower_components/jquery/dist/jquery.min.js', './js/jquery.js')
-      grunt.file.copy('./bower_components/client/index.coffee', './coffee/trello_client.coffee')
-      grunt.task.run('coffee')
+      grunt.task.run('coffee');
+      grunt.file.copy('bower_components/jquery/dist/jquery.min.js', 'package/js/jquery.js');
+      grunt.file.copy('package/manifest.json', 'package');
+      grunt.file.copy('package/icon', 'package/icon');
+      grunt.file.copy('package/manifest.json');
     }
   );
   grunt.registerTask('watch', ['watch']);
