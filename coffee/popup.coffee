@@ -13,6 +13,7 @@ class TrelloClient
     expiration: "never"
 
   onLoad: ->
+    console.log "onLoad"
     if @checkAuth()
       console.log "authed"
     else
@@ -21,13 +22,13 @@ class TrelloClient
 
   checkAuth: ->
     Trello.authorize(_getAuthOpts(false))
+
   loginAuth: ->
-    Trello.authorize(_getAuthOpts(true))
+    chrome.tabs.create
+      "url": chrome.extension.getURL("html/options.html")
 
 # Run a script when the document's ready.
 document.addEventListener 'DOMContentLoaded', ->
   console.log "Trello Viewer"
   trello = new TrelloClient()
-  setTimeout ->
-    trello.onLoad()
-  , 2000
+  trello.onLoad()
