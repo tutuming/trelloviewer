@@ -16,26 +16,49 @@ module.exports = (grunt) ->
           {
             expand: true
             cwd: "bower_components/jquery/dist"
-            src: 'jquery.min.js'
-            dest: "js"
+            src: 'jquery.js'
+            dest: "js/"
             filter: "isFile"
+            rename: (dest, src) ->
+              dest + src
           }
           {
             expand: true
-            cwd: "bower_components/trello_client"
-            src: 'index.js'
-            dest: 'js'
+            cwd: "bower_components/react"
+            src: 'react.js'
+            dest: 'js/'
+            fileter: 'isFile'
+            rename: (dest, src) ->
+              dest + src
+          }
+        ]
+      build:
+        files: [
+          {
+            expand: true
+            cwd: "bower_components/jquery/dist"
+            src: 'jquery.min.js'
+            dest: "js/"
             filter: "isFile"
             rename: (dest, src) ->
-              'js/trello_client.js'
+              dest + 'jquery.js'
+          }
+          {
+            expand: true
+            cwd: "bower_components/react"
+            src: 'react.min.js'
+            dest: 'js/'
+            fileter: 'isFile'
+            rename: (dest, src) ->
+              dest + 'react.js'
           }
         ]
 
     watch:
       files: ["coffee/**/*.coffee"]
-      tasks: ["coffee"]
+      tasks: ["cjsx"]
 
-    coffee:
+    cjsx:
       compile:
         files: [
           expand: true
@@ -46,17 +69,22 @@ module.exports = (grunt) ->
         ]
         options:
           bare: true
+          sourceMap: true
 
-  grunt.loadNpmTasks "grunt-contrib-coffee"
+  grunt.loadNpmTasks "grunt-coffee-react"
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-bower-task"
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.registerTask "init", [
     "bower:install"
-    "copy"
+    "copy:init"
   ]
   grunt.registerTask "default", [
-    "copy"
-    "coffee"
+    "copy:init"
+    "cjsx"
+  ]
+  grunt.registerTask "build", [
+    "copy:build"
+    "cjsx"
   ]
   return
