@@ -24,6 +24,51 @@ module.exports = (grunt) ->
           }
           {
             expand: true
+            cwd: "bower_components/moment"
+            src: 'moment.js'
+            dest: "js/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + src
+          }
+          {
+            expand: true
+            cwd: "bower_components/lodash/dist"
+            src: 'lodash.js'
+            dest: "js/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + src
+          }
+          {
+            expand: true
+            cwd: "bower_components/bootstrap/dist/js"
+            src: 'bootstrap.js'
+            dest: "js/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + src
+          }
+          {
+            expand: true
+            cwd: "bower_components/bootstrap/dist/css"
+            src: 'bootstrap.css'
+            dest: "css/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + src
+          }
+          {
+            expand: true
+            cwd: "bower_components/bootstrap/dist/css"
+            src: 'bootstrap-theme.css'
+            dest: "css/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + src
+          }
+          {
+            expand: true
             cwd: "bower_components/react"
             src: 'react.js'
             dest: 'js/'
@@ -42,6 +87,51 @@ module.exports = (grunt) ->
             filter: "isFile"
             rename: (dest, src) ->
               dest + 'jquery.js'
+          }
+          {
+            expand: true
+            cwd: "bower_components/moment/min"
+            src: 'moment.min.js'
+            dest: "js/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + 'moment.js'
+          }
+          {
+            expand: true
+            cwd: "bower_components/lodash/dist"
+            src: 'lodash.min.js'
+            dest: "js/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + 'lodash.js'
+          }
+          {
+            expand: true
+            cwd: "bower_components/bootstrap/dist/js"
+            src: 'bootstrap.min.js'
+            dest: "js/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + 'bootstrap.js'
+          }
+          {
+            expand: true
+            cwd: "bower_components/bootstrap/dist/css"
+            src: 'bootstrap.min.css'
+            dest: "css/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + 'bootstrap.css'
+          }
+          {
+            expand: true
+            cwd: "bower_components/bootstrap/dist/css"
+            src: 'bootstrap-theme.min.css'
+            dest: "css/"
+            filter: "isFile"
+            rename: (dest, src) ->
+              dest + 'bootstrap-theme.css'
           }
           {
             expand: true
