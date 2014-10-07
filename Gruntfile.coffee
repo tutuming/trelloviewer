@@ -11,7 +11,7 @@ module.exports = (grunt) ->
           cleanBowerDir: false
 
     copy:
-      init:
+      develop:
         files: [
           {
             expand: true
@@ -19,8 +19,6 @@ module.exports = (grunt) ->
             src: 'jquery.js'
             dest: "js/"
             filter: "isFile"
-            rename: (dest, src) ->
-              dest + src
           }
           {
             expand: true
@@ -28,8 +26,6 @@ module.exports = (grunt) ->
             src: 'moment.js'
             dest: "js/"
             filter: "isFile"
-            rename: (dest, src) ->
-              dest + src
           }
           {
             expand: true
@@ -37,8 +33,6 @@ module.exports = (grunt) ->
             src: 'lodash.js'
             dest: "js/"
             filter: "isFile"
-            rename: (dest, src) ->
-              dest + src
           }
           {
             expand: true
@@ -46,8 +40,6 @@ module.exports = (grunt) ->
             src: 'bootstrap.js'
             dest: "js/"
             filter: "isFile"
-            rename: (dest, src) ->
-              dest + src
           }
           {
             expand: true
@@ -55,17 +47,13 @@ module.exports = (grunt) ->
             src: 'bootstrap.css'
             dest: "css/"
             filter: "isFile"
-            rename: (dest, src) ->
-              dest + src
           }
           {
             expand: true
-            cwd: "bower_components/bootstrap/dist/css"
-            src: 'bootstrap-theme.css'
-            dest: "css/"
+            cwd: "bower_components/bootstrap/dist/fonts"
+            src: '*'
+            dest: "fonts/"
             filter: "isFile"
-            rename: (dest, src) ->
-              dest + src
           }
           {
             expand: true
@@ -73,11 +61,9 @@ module.exports = (grunt) ->
             src: 'react.js'
             dest: 'js/'
             fileter: 'isFile'
-            rename: (dest, src) ->
-              dest + src
           }
         ]
-      build:
+      release:
         files: [
           {
             expand: true
@@ -126,12 +112,10 @@ module.exports = (grunt) ->
           }
           {
             expand: true
-            cwd: "bower_components/bootstrap/dist/css"
-            src: 'bootstrap-theme.min.css'
-            dest: "css/"
+            cwd: "bower_components/bootstrap/dist/fonts"
+            src: '*'
+            dest: "fonts/"
             filter: "isFile"
-            rename: (dest, src) ->
-              dest + 'bootstrap-theme.css'
           }
           {
             expand: true
@@ -167,14 +151,14 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.registerTask "init", [
     "bower:install"
-    "copy:init"
   ]
-  grunt.registerTask "default", [
-    "copy:init"
+  grunt.registerTask "develop", [
+    "copy:develop"
     "cjsx"
   ]
-  grunt.registerTask "build", [
-    "copy:build"
+  grunt.registerTask "release", [
+    "copy:release"
     "cjsx"
   ]
+  grunt.registerTask "default", ["develop"]
   return

@@ -1,2 +1,33 @@
-pre {
+
+.list-group.board-box {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.board-box.list-group>.board-box-inner {
+  height: 165px;
+  overflow-y: auto;
+  border: none;
+}
+
+.list-group-item>.glyphicon-remove {
+  opacity: 0;
+}
+
+.list-group-item:hover>.glyphicon-remove {
+  opacity: 0.4;
+}
+
+.list-group-item-danger:hover>.glyphicon-remove {
+  opacity: 1.0;
+}
+
+.list-group-item-danger>.glyphicon-remove {
+  opacity: 1.0;
+}
+.copyright {
+  font-size: 9pt;
+  color: #A0A0A0;
+  text-align: center;
+  line-height: 24px;
+  height: 24px;
 }

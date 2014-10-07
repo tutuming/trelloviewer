@@ -10,10 +10,12 @@
   "permissions": [
     "https://trello.com/",
     "https://api.trello.com/",
-    "storage"
+    "storage",
+    "notifications"
   ],
   "web_accessible_resources" :[
-    "html/options.html"
+    "html/options.html",
+    "icon/icon.png"
   ],
   "content_security_policy": "script-src 'self' https://api.trello.com; object-src 'self'",
   "browser_action": {
@@ -23,5 +25,9 @@
   "options_page": "html/options.html",
   "background": {
     "page" : "html/background.html"
+  },
+  "icons": {
+    "48":"icon/icon_48.png",
+    "128":"icon/icon_128.png"
   }
 }
